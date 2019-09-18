@@ -1,3 +1,6 @@
+import pprint
+
+
 # eventually switch to some sort of database
 class BaseModel(object):
 
@@ -12,5 +15,7 @@ class BaseModel(object):
     def set(self, **kwargs):
         self.fields.update(kwargs)
 
-    def save():
-        pass
+    def save(self):
+        with open(f'data/{self.key}.data', 'w+') as f:
+            f.write(pprint.pformat(self.json))
+

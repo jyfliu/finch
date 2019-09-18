@@ -1,6 +1,12 @@
 # api key
 *.key
 
+# poverty database
+*.data
+
+# vim
+*.swp
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

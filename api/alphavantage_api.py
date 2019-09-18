@@ -13,6 +13,8 @@ with open("api/alphavantage_api.key") as f:
 
 def _json_to_model(json):
     ats = AlphavantageTimeSeries()
+    ats.key = json['Meta Data']['2. Symbol'] + ' ' +\
+        json['Meta Data']['3. Last Refreshed']
     ats.json = json
 
     meta_data = json['Meta Data']
@@ -55,5 +57,8 @@ def time_series_intraday(symbol, interval='1min', apikey=None):
 
     r = requests.get('https://www.alphavantage.co/query', params=payload)
 
-    return _json_to_model(r.json())
+    ats = _json_to_model(r.json())
+    ats.save()
+
+    return ats
 
